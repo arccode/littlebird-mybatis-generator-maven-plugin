@@ -31,6 +31,27 @@
     <packaging>maven-plugin</packaging>
     <name>LittleBird MyBatis Generator Maven Plugin</name>
 
+    <url>https://github.com/arccode/littlebird-mybatis-generator-maven-plugin</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>arccode</name>
+            <email>zuitiku@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/arccode/littlebird-mybatis-generator-maven-plugin</url>
+        <tag>littlebird-mybatis-generator-maven-plugin-0.0.1</tag>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -45,6 +66,68 @@
                         <id>help-goal</id>
                         <goals>
                             <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.mybatis.generator.api.ShellRunner</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- GPG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -115,4 +198,16 @@
         </profile>
     </profiles>
     <description>LittleBird Maven plugin for MyBatis Generator.</description>
+
+    <distributionManagement>
+        <site>
+            <id>master</id>
+            <name>LittleBird Mybatis Generator Maven Plugin GitHub Pages</name>
+            <url>git@github.com:arccode/littlebird-mybatis-generator-maven-plugin.git</url>
+        </site>
+        <repository>
+            <id>oss</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>
